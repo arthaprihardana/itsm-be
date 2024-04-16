@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres:11.5"
+    environment:
+      - "POSTGRES_USER=gettingstarted"
+      - "POSTGRES_DB=gettingstarted"
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+  # only needed if using mongoose
+  mongo:
+    image: "mongo:4.4"
+    restart: always
+    ports:
+      - "27017:27017"
+  mongo-express:
+    image: "mongo-express:latest"
+    restart: always
+    ports:
+      - 8081:8081

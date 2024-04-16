@@ -1,0 +1,1295 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Role {
+  id: ID!
+  role_name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  created_by: String
+  updated_by: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Resource {
+  id: ID!
+  resources_name: String!
+  status: String!
+  resign_date: DateTime
+  created_at: DateTime!
+  updated_at: DateTime!
+  created_by: String
+  updated_by: String
+  department_name: Department!
+  resources_role: Role!
+}
+
+type Department {
+  id: ID!
+  department_name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  created_by: String
+  updated_by: String
+  resources(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ResourceFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [ResourceSort!]! = []
+  ): DepartmentResourcesConnection!
+}
+
+input CursorPaging {
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
+}
+
+"""Cursor for paging through collections"""
+scalar ConnectionCursor
+
+input ResourceFilter {
+  and: [ResourceFilter!]
+  or: [ResourceFilter!]
+  id: IDFilterComparison
+  resources_name: StringFieldComparison
+  status: StringFieldComparison
+  resign_date: DateFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input IDFilterComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: ID
+  neq: ID
+  gt: ID
+  gte: ID
+  lt: ID
+  lte: ID
+  like: ID
+  notLike: ID
+  iLike: ID
+  notILike: ID
+  in: [ID!]
+  notIn: [ID!]
+}
+
+input StringFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: String
+  neq: String
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  like: String
+  notLike: String
+  iLike: String
+  notILike: String
+  in: [String!]
+  notIn: [String!]
+}
+
+input DateFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: DateTime
+  neq: DateTime
+  gt: DateTime
+  gte: DateTime
+  lt: DateTime
+  lte: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  between: DateFieldComparisonBetween
+  notBetween: DateFieldComparisonBetween
+}
+
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
+}
+
+input ResourceSort {
+  field: ResourceSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum ResourceSortFields {
+  id
+  resources_name
+  status
+  resign_date
+  created_by
+  updated_by
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+type DepartmentDeleteResponse {
+  id: ID
+  department_name: String
+  created_at: DateTime
+  updated_at: DateTime
+  created_by: String
+  updated_by: String
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+type DepartmentEdge {
+  """The node containing the Department"""
+  node: Department!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type PageInfo {
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+
+  """The cursor of the first returned record."""
+  startCursor: ConnectionCursor
+
+  """The cursor of the last returned record."""
+  endCursor: ConnectionCursor
+}
+
+type DepartmentConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [DepartmentEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ResourceEdge {
+  """The node containing the Resource"""
+  node: Resource!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type DepartmentResourcesConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ResourceEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ResourceDeleteResponse {
+  id: ID
+  resources_name: String
+  status: String
+  resign_date: DateTime
+  created_at: DateTime
+  updated_at: DateTime
+  created_by: String
+  updated_by: String
+}
+
+type ResourceConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ResourceEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type RoleDeleteResponse {
+  id: ID
+  role_name: String
+  created_at: DateTime
+  updated_at: DateTime
+  created_by: String
+  updated_by: String
+}
+
+type RoleEdge {
+  """The node containing the Role"""
+  node: Role!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type RoleConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [RoleEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type Stakeholder {
+  id: ID!
+  stakeholder_name: String!
+  business_unit: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  created_by: String
+  updated_by: String
+  products(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ProductFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [ProductSort!]! = []
+  ): StakeholderProductsConnection!
+}
+
+input ProductFilter {
+  and: [ProductFilter!]
+  or: [ProductFilter!]
+  id: IDFilterComparison
+  product_name: StringFieldComparison
+  product_description: StringFieldComparison
+  product_category: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input ProductSort {
+  field: ProductSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum ProductSortFields {
+  id
+  product_name
+  product_description
+  product_category
+  created_by
+  updated_by
+}
+
+type Product {
+  id: ID!
+  product_name: String!
+  product_description: String!
+  product_category: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  created_by: String
+  updated_by: String
+  stakeholder: Stakeholder!
+  projects(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ProjectFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [ProjectSort!]! = []
+  ): ProductProjectsConnection!
+}
+
+input ProjectFilter {
+  and: [ProjectFilter!]
+  or: [ProjectFilter!]
+  id: IDFilterComparison
+  project_sr: StringFieldComparison
+  project_name: StringFieldComparison
+  project_description: StringFieldComparison
+  mandays: NumberFieldComparison
+  target_revenue: NumberFieldComparison
+  actual_revenue: NumberFieldComparison
+  score: NumberFieldComparison
+  rollout_date: DateFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input NumberFieldComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: Float
+  neq: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  in: [Float!]
+  notIn: [Float!]
+  between: NumberFieldComparisonBetween
+  notBetween: NumberFieldComparisonBetween
+}
+
+input NumberFieldComparisonBetween {
+  lower: Float!
+  upper: Float!
+}
+
+input ProjectSort {
+  field: ProjectSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum ProjectSortFields {
+  id
+  project_sr
+  project_name
+  project_description
+  mandays
+  target_revenue
+  actual_revenue
+  score
+  rollout_date
+  created_by
+  updated_by
+}
+
+type Project {
+  id: ID!
+  project_sr: String!
+  project_name: String!
+  project_description: String!
+  mandays: Float!
+  target_revenue: Float!
+  actual_revenue: Float
+  score: Float!
+  rollout_date: DateTime
+  created_at: DateTime!
+  updated_at: DateTime!
+  created_by: String
+  updated_by: String
+  pmo: Resource
+  product: Product!
+}
+
+type ProjectDeleteResponse {
+  id: ID
+  project_sr: String
+  project_name: String
+  project_description: String
+  mandays: Float
+  target_revenue: Float
+  actual_revenue: Float
+  score: Float
+  rollout_date: DateTime
+  created_at: DateTime
+  updated_at: DateTime
+  created_by: String
+  updated_by: String
+}
+
+type ProjectEdge {
+  """The node containing the Project"""
+  node: Project!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type ProjectConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ProjectEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ProductDeleteResponse {
+  id: ID
+  product_name: String
+  product_description: String
+  product_category: String
+  created_at: DateTime
+  updated_at: DateTime
+  created_by: String
+  updated_by: String
+}
+
+type ProductEdge {
+  """The node containing the Product"""
+  node: Product!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type ProductConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ProductEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type ProductProjectsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ProjectEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type StakeholderDeleteResponse {
+  id: ID
+  stakeholder_name: String
+  business_unit: String
+  created_at: DateTime
+  updated_at: DateTime
+  created_by: String
+  updated_by: String
+}
+
+type StakeholderEdge {
+  """The node containing the Stakeholder"""
+  node: Stakeholder!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type StakeholderConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [StakeholderEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type StakeholderProductsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [ProductEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type Query {
+  department(
+    """The id of the record to find."""
+    id: ID!
+  ): Department!
+  departments(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: DepartmentFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [DepartmentSort!]! = []
+  ): DepartmentConnection!
+  resource(
+    """The id of the record to find."""
+    id: ID!
+  ): Resource!
+  resources(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ResourceFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [ResourceSort!]! = []
+  ): ResourceConnection!
+  role(
+    """The id of the record to find."""
+    id: ID!
+  ): Role!
+  roles(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: RoleFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [RoleSort!]! = []
+  ): RoleConnection!
+  project(
+    """The id of the record to find."""
+    id: ID!
+  ): Project!
+  projects(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ProjectFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [ProjectSort!]! = []
+  ): ProjectConnection!
+  product(
+    """The id of the record to find."""
+    id: ID!
+  ): Product!
+  products(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: ProductFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [ProductSort!]! = []
+  ): ProductConnection!
+  stakeholder(
+    """The id of the record to find."""
+    id: ID!
+  ): Stakeholder!
+  stakeholders(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: StakeholderFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [StakeholderSort!]! = []
+  ): StakeholderConnection!
+}
+
+input DepartmentFilter {
+  and: [DepartmentFilter!]
+  or: [DepartmentFilter!]
+  id: IDFilterComparison
+  department_name: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input DepartmentSort {
+  field: DepartmentSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum DepartmentSortFields {
+  id
+  department_name
+  created_by
+  updated_by
+}
+
+input RoleFilter {
+  and: [RoleFilter!]
+  or: [RoleFilter!]
+  id: IDFilterComparison
+  role_name: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input RoleSort {
+  field: RoleSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum RoleSortFields {
+  id
+  role_name
+  created_by
+  updated_by
+}
+
+input StakeholderFilter {
+  and: [StakeholderFilter!]
+  or: [StakeholderFilter!]
+  id: IDFilterComparison
+  stakeholder_name: StringFieldComparison
+  business_unit: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input StakeholderSort {
+  field: StakeholderSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum StakeholderSortFields {
+  id
+  stakeholder_name
+  business_unit
+  created_by
+  updated_by
+}
+
+type Mutation {
+  addResourcesToDepartment(input: AddResourcesToDepartmentInput!): Department!
+  setResourcesOnDepartment(input: SetResourcesOnDepartmentInput!): Department!
+  removeResourcesFromDepartment(input: RemoveResourcesFromDepartmentInput!): Department!
+  createOneDepartment(input: CreateOneDepartmentInput!): Department!
+  createManyDepartments(input: CreateManyDepartmentsInput!): [Department!]!
+  updateOneDepartment(input: UpdateOneDepartmentInput!): Department!
+  updateManyDepartments(input: UpdateManyDepartmentsInput!): UpdateManyResponse!
+  deleteOneDepartment(input: DeleteOneDepartmentInput!): DepartmentDeleteResponse!
+  deleteManyDepartments(input: DeleteManyDepartmentsInput!): DeleteManyResponse!
+  setDepartment_nameOnResource(input: SetDepartment_nameOnResourceInput!): Resource!
+  setResources_roleOnResource(input: SetResources_roleOnResourceInput!): Resource!
+  createOneResource(input: CreateOneResourceInput!): Resource!
+  createManyResources(input: CreateManyResourcesInput!): [Resource!]!
+  updateOneResource(input: UpdateOneResourceInput!): Resource!
+  updateManyResources(input: UpdateManyResourcesInput!): UpdateManyResponse!
+  deleteOneResource(input: DeleteOneResourceInput!): ResourceDeleteResponse!
+  deleteManyResources(input: DeleteManyResourcesInput!): DeleteManyResponse!
+  createOneRole(input: CreateOneRoleInput!): Role!
+  createManyRoles(input: CreateManyRolesInput!): [Role!]!
+  updateOneRole(input: UpdateOneRoleInput!): Role!
+  updateManyRoles(input: UpdateManyRolesInput!): UpdateManyResponse!
+  deleteOneRole(input: DeleteOneRoleInput!): RoleDeleteResponse!
+  deleteManyRoles(input: DeleteManyRolesInput!): DeleteManyResponse!
+  setPmoOnProject(input: SetPmoOnProjectInput!): Project!
+  setProductOnProject(input: SetProductOnProjectInput!): Project!
+  removeProductFromProject(input: RemoveProductFromProjectInput!): Project!
+  createOneProject(input: CreateOneProjectInput!): Project!
+  createManyProjects(input: CreateManyProjectsInput!): [Project!]!
+  updateOneProject(input: UpdateOneProjectInput!): Project!
+  updateManyProjects(input: UpdateManyProjectsInput!): UpdateManyResponse!
+  deleteOneProject(input: DeleteOneProjectInput!): ProjectDeleteResponse!
+  deleteManyProjects(input: DeleteManyProjectsInput!): DeleteManyResponse!
+  setStakeholderOnProduct(input: SetStakeholderOnProductInput!): Product!
+  addProjectsToProduct(input: AddProjectsToProductInput!): Product!
+  setProjectsOnProduct(input: SetProjectsOnProductInput!): Product!
+  removeStakeholderFromProduct(input: RemoveStakeholderFromProductInput!): Product!
+  removeProjectsFromProduct(input: RemoveProjectsFromProductInput!): Product!
+  createOneProduct(input: CreateOneProductInput!): Product!
+  createManyProducts(input: CreateManyProductsInput!): [Product!]!
+  updateOneProduct(input: UpdateOneProductInput!): Product!
+  updateManyProducts(input: UpdateManyProductsInput!): UpdateManyResponse!
+  deleteOneProduct(input: DeleteOneProductInput!): ProductDeleteResponse!
+  deleteManyProducts(input: DeleteManyProductsInput!): DeleteManyResponse!
+  addProductsToStakeholder(input: AddProductsToStakeholderInput!): Stakeholder!
+  setProductsOnStakeholder(input: SetProductsOnStakeholderInput!): Stakeholder!
+  createOneStakeholder(input: CreateOneStakeholderInput!): Stakeholder!
+  createManyStakeholders(input: CreateManyStakeholdersInput!): [Stakeholder!]!
+  updateOneStakeholder(input: UpdateOneStakeholderInput!): Stakeholder!
+  updateManyStakeholders(input: UpdateManyStakeholdersInput!): UpdateManyResponse!
+  deleteOneStakeholder(input: DeleteOneStakeholderInput!): StakeholderDeleteResponse!
+  deleteManyStakeholders(input: DeleteManyStakeholdersInput!): DeleteManyResponse!
+}
+
+input AddResourcesToDepartmentInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetResourcesOnDepartmentInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input RemoveResourcesFromDepartmentInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input CreateOneDepartmentInput {
+  """The record to create"""
+  department: DepartmentInput!
+}
+
+input DepartmentInput {
+  department_name: String!
+}
+
+input CreateManyDepartmentsInput {
+  """Array of records to create"""
+  departments: [DepartmentInput!]!
+}
+
+input UpdateOneDepartmentInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: DepartmentUpdate!
+}
+
+input DepartmentUpdate {
+  department_name: String
+}
+
+input UpdateManyDepartmentsInput {
+  """Filter used to find fields to update"""
+  filter: DepartmentUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: DepartmentUpdate!
+}
+
+input DepartmentUpdateFilter {
+  and: [DepartmentUpdateFilter!]
+  or: [DepartmentUpdateFilter!]
+  id: IDFilterComparison
+  department_name: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input DeleteOneDepartmentInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyDepartmentsInput {
+  """Filter to find records to delete"""
+  filter: DepartmentDeleteFilter!
+}
+
+input DepartmentDeleteFilter {
+  and: [DepartmentDeleteFilter!]
+  or: [DepartmentDeleteFilter!]
+  id: IDFilterComparison
+  department_name: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input SetDepartment_nameOnResourceInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetResources_roleOnResourceInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input CreateOneResourceInput {
+  """The record to create"""
+  resource: ResourceInput!
+}
+
+input ResourceInput {
+  resources_name: String!
+  resources_role: ID!
+  status: String!
+  resign_date: DateTime
+  department_name: ID!
+}
+
+input CreateManyResourcesInput {
+  """Array of records to create"""
+  resources: [ResourceInput!]!
+}
+
+input UpdateOneResourceInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: ResourcesUpdate!
+}
+
+input ResourcesUpdate {
+  resources_name: String!
+  resources_role: String
+  status: String!
+  resign_date: DateTime
+  department_name: String
+}
+
+input UpdateManyResourcesInput {
+  """Filter used to find fields to update"""
+  filter: ResourceUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: ResourcesUpdate!
+}
+
+input ResourceUpdateFilter {
+  and: [ResourceUpdateFilter!]
+  or: [ResourceUpdateFilter!]
+  id: IDFilterComparison
+  resources_name: StringFieldComparison
+  status: StringFieldComparison
+  resign_date: DateFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input DeleteOneResourceInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyResourcesInput {
+  """Filter to find records to delete"""
+  filter: ResourceDeleteFilter!
+}
+
+input ResourceDeleteFilter {
+  and: [ResourceDeleteFilter!]
+  or: [ResourceDeleteFilter!]
+  id: IDFilterComparison
+  resources_name: StringFieldComparison
+  status: StringFieldComparison
+  resign_date: DateFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input CreateOneRoleInput {
+  """The record to create"""
+  role: RoleInput!
+}
+
+input RoleInput {
+  role_name: String!
+}
+
+input CreateManyRolesInput {
+  """Array of records to create"""
+  roles: [RoleInput!]!
+}
+
+input UpdateOneRoleInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: RoleUpdate!
+}
+
+input RoleUpdate {
+  role_name: String!
+}
+
+input UpdateManyRolesInput {
+  """Filter used to find fields to update"""
+  filter: RoleUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: RoleUpdate!
+}
+
+input RoleUpdateFilter {
+  and: [RoleUpdateFilter!]
+  or: [RoleUpdateFilter!]
+  id: IDFilterComparison
+  role_name: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input DeleteOneRoleInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyRolesInput {
+  """Filter to find records to delete"""
+  filter: RoleDeleteFilter!
+}
+
+input RoleDeleteFilter {
+  and: [RoleDeleteFilter!]
+  or: [RoleDeleteFilter!]
+  id: IDFilterComparison
+  role_name: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input SetPmoOnProjectInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetProductOnProjectInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input RemoveProductFromProjectInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input CreateOneProjectInput {
+  """The record to create"""
+  project: ProjectInput!
+}
+
+input ProjectInput {
+  project_sr: String!
+  project_name: String!
+  project_description: String!
+  pmo: ID
+  product: ID!
+  mandays: Float!
+  target_revenue: Float!
+  actual_revenue: Float
+  score: Float!
+  rollout_date: DateTime
+}
+
+input CreateManyProjectsInput {
+  """Array of records to create"""
+  projects: [ProjectInput!]!
+}
+
+input UpdateOneProjectInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: ProjectUpdate!
+}
+
+input ProjectUpdate {
+  project_sr: String
+  project_name: String
+  project_description: String
+  pmo: ID
+  product: ID
+  mandays: Float
+  target_revenue: Float
+  actual_revenue: Float
+  score: Float
+  rollout_date: DateTime
+}
+
+input UpdateManyProjectsInput {
+  """Filter used to find fields to update"""
+  filter: ProjectUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: ProjectUpdate!
+}
+
+input ProjectUpdateFilter {
+  and: [ProjectUpdateFilter!]
+  or: [ProjectUpdateFilter!]
+  id: IDFilterComparison
+  project_sr: StringFieldComparison
+  project_name: StringFieldComparison
+  project_description: StringFieldComparison
+  mandays: NumberFieldComparison
+  target_revenue: NumberFieldComparison
+  actual_revenue: NumberFieldComparison
+  score: NumberFieldComparison
+  rollout_date: DateFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input DeleteOneProjectInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyProjectsInput {
+  """Filter to find records to delete"""
+  filter: ProjectDeleteFilter!
+}
+
+input ProjectDeleteFilter {
+  and: [ProjectDeleteFilter!]
+  or: [ProjectDeleteFilter!]
+  id: IDFilterComparison
+  project_sr: StringFieldComparison
+  project_name: StringFieldComparison
+  project_description: StringFieldComparison
+  mandays: NumberFieldComparison
+  target_revenue: NumberFieldComparison
+  actual_revenue: NumberFieldComparison
+  score: NumberFieldComparison
+  rollout_date: DateFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input SetStakeholderOnProductInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input AddProjectsToProductInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetProjectsOnProductInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input RemoveStakeholderFromProductInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input RemoveProjectsFromProductInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input CreateOneProductInput {
+  """The record to create"""
+  product: ProductInput!
+}
+
+input ProductInput {
+  product_name: String!
+  product_description: String!
+  product_category: String!
+  stakeholder: ID!
+}
+
+input CreateManyProductsInput {
+  """Array of records to create"""
+  products: [ProductInput!]!
+}
+
+input UpdateOneProductInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: ProductUpdate!
+}
+
+input ProductUpdate {
+  product_name: String!
+  product_description: String!
+  product_category: String!
+}
+
+input UpdateManyProductsInput {
+  """Filter used to find fields to update"""
+  filter: ProductUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: ProductUpdate!
+}
+
+input ProductUpdateFilter {
+  and: [ProductUpdateFilter!]
+  or: [ProductUpdateFilter!]
+  id: IDFilterComparison
+  product_name: StringFieldComparison
+  product_description: StringFieldComparison
+  product_category: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input DeleteOneProductInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyProductsInput {
+  """Filter to find records to delete"""
+  filter: ProductDeleteFilter!
+}
+
+input ProductDeleteFilter {
+  and: [ProductDeleteFilter!]
+  or: [ProductDeleteFilter!]
+  id: IDFilterComparison
+  product_name: StringFieldComparison
+  product_description: StringFieldComparison
+  product_category: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input AddProductsToStakeholderInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetProductsOnStakeholderInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input CreateOneStakeholderInput {
+  """The record to create"""
+  stakeholder: StakeholderInput!
+}
+
+input StakeholderInput {
+  stakeholder_name: String!
+  business_unit: String!
+}
+
+input CreateManyStakeholdersInput {
+  """Array of records to create"""
+  stakeholders: [StakeholderInput!]!
+}
+
+input UpdateOneStakeholderInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: StakeholderUpdate!
+}
+
+input StakeholderUpdate {
+  stakeholder_name: String!
+  business_unit: String!
+}
+
+input UpdateManyStakeholdersInput {
+  """Filter used to find fields to update"""
+  filter: StakeholderUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: StakeholderUpdate!
+}
+
+input StakeholderUpdateFilter {
+  and: [StakeholderUpdateFilter!]
+  or: [StakeholderUpdateFilter!]
+  id: IDFilterComparison
+  stakeholder_name: StringFieldComparison
+  business_unit: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
+
+input DeleteOneStakeholderInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyStakeholdersInput {
+  """Filter to find records to delete"""
+  filter: StakeholderDeleteFilter!
+}
+
+input StakeholderDeleteFilter {
+  and: [StakeholderDeleteFilter!]
+  or: [StakeholderDeleteFilter!]
+  id: IDFilterComparison
+  stakeholder_name: StringFieldComparison
+  business_unit: StringFieldComparison
+  created_by: StringFieldComparison
+  updated_by: StringFieldComparison
+}
